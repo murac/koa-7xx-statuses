@@ -1,6 +1,6 @@
 var request = require('supertest')
   , koa = require('koa')
-  , customStatuses = require('../lib/customStatusCodes');
+  , customStatuses = require('../lib/7xxStatusCodes');
 
 describe('Koa Custom Status', function () {
     it('should throw an error if an invalid code has been sent', function (done) {
