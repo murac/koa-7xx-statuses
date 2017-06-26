@@ -1,37 +1,39 @@
 {
-  "name": "koa-custom-statuses",
-  "version": "1.5.2",
-  "description": "A tiny library to add or overwrite koa status codes allowing for custom status codes and status messages",
-  "main": "lib/customStatusCodes.js",
-
+  "name": "koa-7xx-statuses",
+  "version": "1.0.0",
+  "description": "A tiny library to add 'RFC 7xx: Develop Errors' status codes and messages which also retains the functionality to add other custom statuses",
+  "main": "lib/7xxStatusCodes.js",
   "scripts": {
     "test": "NODE_ENV=test mocha --harmony --require should --reporter spec",
     "test-cov": "NODE_ENV=test node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --require should",
     "test-travis": "NODE_ENV=test node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- --require should"
   },
-
   "keywords": [
     "koa",
+    "RFC 7xx: Developer Errors",
+    "7xx",
+    "799: End of The World",
     "statusCodes",
     "statusMessage",
     "custom status codes"
   ],
-  "repository": "srinivasiyer/koa-custom-statuses",
+  "repository": "murac/koa-custom-statuses",
   "author": {
-      "name": "Srinivas Iyer",
-      "email": "srinivasiyer87@gmail.com"
+    "name": "Darek Dziamalek",
+    "email": "ddziamalek@gmail.com"
   },
   "license": "MIT",
   "dependencies": {
-    "merge-descriptors": "^1.0.0",
-    "statuses": "^1.2.1"
+    "merge-descriptors": "^1.0.1",
+    "statuses": "^1.3.1"
   },
   "devDependencies": {
+    "any-promise": "^1.3.0",
     "istanbul-harmony": "^0.3.16",
-    "koa": "^1.0.0",
+    "koa": "^2.3.0",
     "mocha": "^2.3.2",
-    "should": "^7.1.0",
-    "supertest": "^1.1.0"
+    "should": "^7.1.1",
+    "supertest": "^1.2.0"
   },
   "engines": {
     "node": ">= 0.11"
