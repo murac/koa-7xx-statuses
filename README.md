@@ -1,27 +1,32 @@
 # Koa Custom Statuses
 
 [![NPM version][npm-image]][npm-url]
-[![iojs version][iojs-image]][iojs-url]
 [![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/koa-7xx-statuses.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/koa-7xx-statuses
-[iojs-image]: https://img.shields.io/badge/io.js-%3E=_1.0-yellow.svg?style=flat-square
-[iojs-url]: http://iojs.org/
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.11-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 [download-image]: https://img.shields.io/npm/dm/koa-7xx-statuses.svg?style=flat-square
 [download-url]: https://npmjs.org/package/koa-7xx-statuses
 
-Koa has a defined set of HTTP response codes that can be retured in a request.
-While they are shandard HTTP codes and will be enough most of the time,
-Sometimes, there is a need for creating custom codes.
-This module enables you to achieve just that declaring the additional codes you require in the very beginning.
-It also enables you to change the status message of existing status codes.
+Are your koajs REST APIs just not ‘expressive’ enough? Do you spend your days wishing you could be truly transparent in how you represent failed HTTP calls to your consumers? Well, now you can! With `koa-7xx-statuses`! 
 
-The module definition is extremely simple. Just mount the module onto the app and provide additional codes if you wish.
+Leverage some of those good old standbys such as: 
 
+- 735: Fucking IE
+- 745: I don’t always test my code, but when I do, I do it in production
+- 747: Motherfucking Snakes on the Motherfucking Plane!
+- 799: The End of the World
+
+…and many, many more!
+
+(Full list can be found @ [RFC for the 7XX Range of HTTP Status codes - Developer Errors](https://github.com/joho/7XX-rfc))
+
+The module definition is extremely simple. Just mount the module onto the app using `koa-mount` and provide additional codes as a JSON object if you wish.
+
+Most credit goes to [Srinivas Iyer](https://github.com/srinivasiyer/) who originally wrote the fantastic package called [koa-custom-statuses](https://github.com/srinivasiyer/koa-custom-statuses) which i simply improved upon. Thank you Srini!
 ```js
 
 const Koa = require('koa');
@@ -29,6 +34,23 @@ const mount = require('koa-mount');
 const k7xxStatuses = require('koa-7xx-statuses');
 const app = new Koa()
 
+const developerStatusCodes = new k7xxStatuses();
+app.use(mount(developerStatusCodes));
+
+app.use(async (ctx, next) => {
+        await next();
+        ctx.status = 799;
+});
+
+```
+
+Of course, if you wish to overwrite, or add your own status codes, just provide them as an argument:
+
+```js
+const Koa = require('koa');
+const mount = require('koa-mount');
+const k7xxStatuses = require('koa-7xx-statuses');
+const app = new Koa()
 
 // Cause you feel like it
 optionalCodes = {
@@ -38,16 +60,7 @@ optionalCodes = {
                 };
 
 const developerStatusCodes = new k7xxStatuses(optionalCodes);
-
-app.use(mount(developerStatusCodes));
-
-app.use(async (ctx, next) => {
-        await next();
-        ctx.status = 700;
-});
-
 ```
-
 There are just some basics you need to keep in mind for OPTIONALLY ADDED codes:
 
 - The status codes can be 3 digit numbers only.
