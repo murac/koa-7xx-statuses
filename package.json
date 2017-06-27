@@ -1,6 +1,6 @@
 {
   "name": "koa-7xx-statuses",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A tiny library to add 'RFC 7xx: Develop Errors' status codes and messages which also retains the functionality to add other custom statuses",
   "main": "lib/7xxStatusCodes.js",
   "scripts": {

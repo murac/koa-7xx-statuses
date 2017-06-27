@@ -1,4 +1,4 @@
-# Koa Custom Statuses
+# Koa 7xx Statuses
 
 [![NPM version][npm-image]][npm-url]
 [![node version][node-image]][node-url]
